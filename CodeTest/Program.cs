@@ -3,7 +3,7 @@ using CodeTest.Services;
 
 namespace CodeTest
 {
-    internal class Program
+    static internal class Program
     {
         static void Main(string[] args)
         {
