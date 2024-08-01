@@ -10,6 +10,8 @@ namespace CodeTest
             INumberService sequencerService = new NumberSequencerService();
 
             var result = sequencerService.FindNumberSequence("6 1 5 9 2");
+
+            Console.WriteLine(result);
         }
     }
 }

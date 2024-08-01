@@ -12,12 +12,26 @@ using System.Threading.Tasks;
 
 namespace CodeTest.Testing
 {
+    /// <summary>
+    /// Base test class
+    /// </summary>
     public class BaseTest
     {
-        protected Mock<INumberService> _mockNumberService;
+        /// <summary>
+        /// Mock repository
+        /// </summary>
         protected MockRepository _mockRepository;
 
+        /// <summary>
+        /// Mock number service
+        /// </summary>
+        protected Mock<INumberService> _mockNumberService;
+        
 
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public BaseTest()
         {
             // Normally for testing I would be using Moq or RhinoMocks.
@@ -28,15 +42,26 @@ namespace CodeTest.Testing
             _mockNumberService = _mockRepository.Create<INumberService>();
         }
 
-        protected void TestTestCaseData(TestCaseData data)
+        /// <summary>
+        /// Test test case data
+        /// </summary>
+        /// <param name="data">Test case data</param>
+        /// <returns>True if test case data matches expected output</returns>
+        protected bool TestTestCaseData(TestCaseData data)
         {
-            var numberSequencer = new NumberSequencerService();
+            var numberSequencer = new NumberSequencerService();            
             var result = numberSequencer.FindNumberSequence(string.Join(" ", data.InputData));
-            Assert.IsTrue(result.Equals(string.Join(" ", data.OutputData)));
+            return result.Equals(string.Join(" ", data.OutputData));
         }
 
         #region Helpers
 
+        /// <summary>
+        /// Get test case data from embedded resources
+        /// </summary>
+        /// <param name="resourceName">Test case file name</param>
+        /// <returns>Test case data</returns>
+        /// <exception cref="Exception">Exception if file not found</exception>
         protected TestCaseData GetTestCaseData(string resourceName)
         {
             TestCaseData result;
@@ -44,7 +69,7 @@ namespace CodeTest.Testing
                 .FirstOrDefault(x => x.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase));
 
             if (assemblyResourceName == null)
-                throw new Exception("Could not find resource {resourceName} in current assembly");
+                throw new FileNotFoundException("Could not find resource {resourceName} in current assembly");
 
             using (StreamReader sr = new StreamReader(this.GetType().Assembly.GetManifestResourceStream(assemblyResourceName)))
                 result = JsonConvert.DeserializeObject<TestCaseData>(sr.ReadToEnd());
