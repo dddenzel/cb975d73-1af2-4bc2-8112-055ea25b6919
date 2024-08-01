@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeTestConsoleApp.Interfaces
+namespace CodeTest.Interfaces
 {
-    internal interface INumberService
+    public interface INumberService
     {        
         string? FindNumberSequence(string? numberString);        
     }

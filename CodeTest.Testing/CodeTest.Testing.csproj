@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\TestCase1.json" />
+    <None Remove="Data\TestCase10.json" />
+    <None Remove="Data\TestCase11.json" />
+    <None Remove="Data\TestCase2.json" />
+    <None Remove="Data\TestCase3.json" />
+    <None Remove="Data\TestCase4.json" />
+    <None Remove="Data\TestCase5.json" />
+    <None Remove="Data\TestCase6.json" />
+    <None Remove="Data\TestCase7.json" />
+    <None Remove="Data\TestCase8.json" />
+    <None Remove="Data\TestCase9.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\TestCase1.json" />
+    <EmbeddedResource Include="Data\TestCase10.json" />
+    <EmbeddedResource Include="Data\TestCase11.json" />
+    <EmbeddedResource Include="Data\TestCase2.json" />
+    <EmbeddedResource Include="Data\TestCase3.json" />
+    <EmbeddedResource Include="Data\TestCase4.json" />
+    <EmbeddedResource Include="Data\TestCase5.json" />
+    <EmbeddedResource Include="Data\TestCase6.json" />
+    <EmbeddedResource Include="Data\TestCase7.json" />
+    <EmbeddedResource Include="Data\TestCase8.json" />
+    <EmbeddedResource Include="Data\TestCase9.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeTest\CodeTest.csproj" />
+  </ItemGroup>
+
+</Project>

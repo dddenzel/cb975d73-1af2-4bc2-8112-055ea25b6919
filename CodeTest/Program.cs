@@ -1,7 +1,7 @@
-﻿using CodeTestConsoleApp.Interfaces;
-using CodeTestConsoleApp.Services;
+﻿using CodeTest.Interfaces;
+using CodeTest.Services;
 
-namespace CodeTestConsoleApp
+namespace CodeTest
 {
     internal class Program
     {

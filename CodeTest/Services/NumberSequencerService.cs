@@ -1,11 +1,11 @@
-﻿using CodeTestConsoleApp.Interfaces;
+﻿using CodeTest.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeTestConsoleApp.Services
+namespace CodeTest.Services
 {
     public class NumberSequencerService : INumberService
     {
