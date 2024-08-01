@@ -8,8 +8,11 @@ namespace CodeTest
         static void Main(string[] args)
         {
             // If no arguments or a call for help, show usage
-            if (args.Length == 0 || new[] { "/h", "--h", "/help", "--help" }.Contains(args[0], StringComparer.OrdinalIgnoreCase))
+            if (args.Length == 0 || new[] { "/?", "--h", "--help" }.Contains(args[0], StringComparer.OrdinalIgnoreCase))
+            {
                 ShowUsage();
+                return;
+            }
 
             // Ensure arguments are in double quotes
             if (args.Length > 1)
