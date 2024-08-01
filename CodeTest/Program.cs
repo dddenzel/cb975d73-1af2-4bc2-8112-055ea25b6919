@@ -11,14 +11,20 @@ namespace CodeTest
             if (args.Length == 0 || new[] { "/h", "--h", "/help", "--help" }.Contains(args[0], StringComparer.OrdinalIgnoreCase))
                 ShowUsage();
 
+            // Ensure arguments are in double quotes
+            if (args.Length > 1)
+            {
+                Console.WriteLine("Too many arguments. Please ensure your input is surrounded in double quotes");
+                return;
+            }
+
+            // If we have a single argument, run our sequencer code, and output the result
             if (args.Length == 1)
             {
                 INumberService sequencerService = new NumberSequencerService();
-                var result = sequencerService.FindNumberSequence(args[1]);
+                var result = sequencerService.FindNumberSequence(args[0]);
                 Console.WriteLine(result);
             }
-
-            Console.ReadKey();
         }
 
         /// <summary>
@@ -31,7 +37,6 @@ namespace CodeTest
             Console.WriteLine("");
             Console.WriteLine("Input:");
             Console.WriteLine("[num1] [num2]:   A single or list of numbers seperated by a single space");
-
         }
     }
 }
