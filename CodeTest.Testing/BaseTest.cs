@@ -1,14 +1,8 @@
 ﻿using CodeTest.Interfaces;
 using CodeTest.Services;
 using CodeTest.Testing.Model;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeTest.Testing
 {
@@ -51,7 +45,7 @@ namespace CodeTest.Testing
         {
             var numberSequencer = new NumberSequencerService();            
             var result = numberSequencer.FindNumberSequence(string.Join(" ", data.InputData));
-            return result.Equals(string.Join(" ", data.OutputData));
+            return result?.Equals(string.Join(" ", data.OutputData)) ?? false;
         }
 
         #region Helpers
@@ -64,17 +58,20 @@ namespace CodeTest.Testing
         /// <exception cref="Exception">Exception if file not found</exception>
         protected TestCaseData GetTestCaseData(string resourceName)
         {
-            TestCaseData result;
+            TestCaseData? result = null;
             var assemblyResourceName = this.GetType().Assembly.GetManifestResourceNames()
                 .FirstOrDefault(x => x.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase));
 
             if (assemblyResourceName == null)
                 throw new FileNotFoundException("Could not find resource {resourceName} in current assembly");
 
-            using (StreamReader sr = new StreamReader(this.GetType().Assembly.GetManifestResourceStream(assemblyResourceName)))
-                result = JsonConvert.DeserializeObject<TestCaseData>(sr.ReadToEnd());
+            var stream = this.GetType().Assembly.GetManifestResourceStream(assemblyResourceName);
 
-            return result;
+            if (stream != null)
+                using (StreamReader sr = new StreamReader(stream))
+                    result = JsonConvert.DeserializeObject<TestCaseData>(sr.ReadToEnd());
+
+            return result ?? new TestCaseData();
         }
 
         #endregion

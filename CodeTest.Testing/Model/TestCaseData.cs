@@ -10,10 +10,10 @@ namespace CodeTest.Testing.Model
     public class TestCaseData
     {
         [JsonProperty("input")]
-        public List<int> InputData { get; set; }
+        public List<int> InputData { get; set; } = new List<int>();
 
         [JsonProperty("output")]
-        public List<int> OutputData { get; set; }
+        public List<int> OutputData { get; set; } = new List<int>();
     }
 
 }

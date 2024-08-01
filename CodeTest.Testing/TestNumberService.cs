@@ -16,7 +16,7 @@ namespace CodeTest.Testing
             INumberService numberService = new NumberSequencerService();
 
             // Set up some bad data
-            string badData = null;
+            string? badData = null;
 
             // Pass in some bad data and assert the expected exception type is thrown
             Assert.ThrowsException<ArgumentException>(() => numberService.FindNumberSequence(badData));
@@ -52,8 +52,7 @@ namespace CodeTest.Testing
 
         [TestMethod]
         public void TestSequenceAtStart()
-        {
-            INumberService numberService = new NumberSequencerService();
+        {            
             TestCaseData testCaseData = new TestCaseData();
 
             // Set up a sequence at the start
@@ -66,8 +65,7 @@ namespace CodeTest.Testing
 
         [TestMethod]
         public void TestSequenceInMiddle()
-        {
-            INumberService numberService = new NumberSequencerService();
+        {            
             TestCaseData testCaseData = new TestCaseData();
 
             // Set up a sequence at the start
@@ -80,8 +78,7 @@ namespace CodeTest.Testing
 
         [TestMethod]
         public void TestSequenceAtEnd()
-        {
-            INumberService numberService = new NumberSequencerService();
+        {            
             TestCaseData testCaseData = new TestCaseData();
 
             // Set up a sequence at the start
@@ -94,8 +91,7 @@ namespace CodeTest.Testing
 
         [TestMethod]
         public void TestLongerSequenceIsReturned()
-        {
-            INumberService numberService = new NumberSequencerService();
+        {            
             TestCaseData testCaseData = new TestCaseData();
 
             // Set up a sequence at the start
@@ -108,8 +104,7 @@ namespace CodeTest.Testing
 
         [TestMethod]
         public void TestEarlierSequenceIsReturned()
-        {
-            INumberService numberService = new NumberSequencerService();
+        {            
             TestCaseData testCaseData = new TestCaseData();
 
             // Set up a sequence at the start
