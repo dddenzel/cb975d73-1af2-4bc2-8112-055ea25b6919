@@ -23,15 +23,15 @@ namespace CodeTest.Services
                 throw new ArgumentException("Missing or invalid string of numbers");
 
             // Split the input by a single whitespace character
-            var numberStringList = numberString?.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var numberStringList = numberString.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             // Ensure that all elements are valid integers. Throw an exception if not
-            if (numberStringList?.Any(x => !int.TryParse(x, out var num)) ?? false)
+            if (numberStringList.Any(x => !int.TryParse(x, out var num)))
                 throw new InvalidCastException("One or more numbers are represent an invalid integer");
 
             // Cast the input as a list of integers
-            var numbers = numberString?.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)?
-                .Select(x => int.Parse(x))?.ToList() ?? new List<int>();
+            var numbers = numberString.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => int.Parse(x)).ToList();
 
             // Loop through all numbers in our list and get all sequences
             results = numbers.Select((num, i) => GetSequence(numbers, i)).ToList();           
@@ -63,7 +63,7 @@ namespace CodeTest.Services
             {
                 // If the current number we are looking (if we have one) at is not greater
                 // than the last, then exit out at this point
-                if (sequentialList.Any() && numbers[x] <= sequentialList.Last())
+                if (sequentialList.Any() && numbers[x] <= sequentialList[sequentialList.Count -1])
                     break;
 
                 // Otherwise, add the number to our running sequential list
