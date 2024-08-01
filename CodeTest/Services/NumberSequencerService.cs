@@ -11,23 +11,14 @@ namespace CodeTest.Services
         /// Finds the largest and earliest number sequence in a group of numbers
         /// </summary>
         /// <param name="numberString">A group of numbers, seperated by a single whitespace character</param>
-        /// <returns>A number sequence as a string</returns>
-        /// <exception cref="ArgumentException">Exception for missing numbers</exception>
-        /// <exception cref="InvalidCastException">Exception for invalid numbers</exception>
+        /// <returns>A number sequence as a string</returns>        
         public string? FindNumberSequence(string? numberString)
         {
             string? result = null;
             List<List<int>> results = new List<List<int>>();
 
-            if (string.IsNullOrEmpty(numberString))
-                throw new ArgumentException("Missing or invalid string of numbers");
-
-            // Split the input by a single whitespace character
-            var numberStringList = numberString.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
-            // Ensure that all elements are valid integers. Throw an exception if not
-            if (numberStringList.Any(x => !int.TryParse(x, out var num)))
-                throw new InvalidCastException("One or more numbers are represent an invalid integer");
+            // Validate input
+            ValidateInput(numberString);
 
             // Cast the input as a list of integers
             var numbers = numberString.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
@@ -47,6 +38,26 @@ namespace CodeTest.Services
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Validate number string input
+        /// </summary>
+        /// <param name="numberString">String of numbers</param>
+        /// <exception cref="ArgumentException">Exception for missing numbers</exception>
+        /// <exception cref="InvalidCastException">Exception for invalid numbers</exception>
+        private void ValidateInput(string? numberString)
+        {
+            // Ensure we have some actual input
+            if (string.IsNullOrEmpty(numberString))
+                throw new ArgumentException("Missing or invalid string of numbers");
+
+            // Split the input by a single whitespace character
+            var numberStringList = numberString.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            // Ensure that all elements are valid integers. Throw an exception if not
+            if (numberStringList.Any(x => !int.TryParse(x, out var num)))
+                throw new InvalidCastException("One or more numbers are represent an invalid integer");
         }
 
         /// <summary>
