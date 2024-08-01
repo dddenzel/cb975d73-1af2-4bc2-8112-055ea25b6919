@@ -1,6 +1,7 @@
 # Code test sample
 Code test showing required number sequencing and testing.  
 SonarLint was used for linting - a few warnings have been intentionally left in. Can be seen in the build logs in either an IDE or git hub actions.  
+A Git Hub action is in place to build the code on a successful push.  
 Code test coverage can be shown in an IDE or by using the command line shown in the section below.  
 Containerization has been included, but the full usage and deployment of this was deemed out of scope. I can elaborate on this if required. The target is ECR/ECS in Amazon AWS. The docker file is found under the main /CodeTest project.  
 
